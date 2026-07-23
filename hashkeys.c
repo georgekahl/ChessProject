@@ -8,7 +8,7 @@ U64 GeneratePosKey(const S_BOARD *pos){
 
     // pieces
     for(sq = 0; sq < BRD_SQ_NUM; sq++){
-        piece = pos->board[sq];
+        piece = pos->pieces[sq];
         if(piece != NO_SQ && piece != EMPTY){
             ASSERT(piece >= wP && piece <= bK);
             finalKey ^= PieceKeys[piece][sq];
@@ -26,7 +26,7 @@ U64 GeneratePosKey(const S_BOARD *pos){
     
     ASSERT(pos->castlePerm >= 0 && pos->castlePerm <= 15);
 
-    FinalKey ^= CastleKeys[pos->castlePerm];
+    finalKey ^= CastleKeys[pos->castlePerm];
     
     return finalKey;
 }
